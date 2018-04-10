@@ -1,6 +1,17 @@
 var homophones = [
   'your','youre',
   'their','theyre','there',
+  'its',
+  'one','won',
+  'affect','effect',
+  'then','than',
+  'weather','whether',
+  'here','hear',
+  'bear','bare',
+  'complement','compliment',
+  'allowed', 'aloud',
+  'capital', 'capital',
+  'principle', 'principal',
 ];
 function onOpen(e) {
   DocumentApp.getUi().createAddonMenu()
@@ -65,7 +76,7 @@ function runDocumentTextHighlighter() {
             tagged = true;
           }
           else{
-            if(word.length > 3){
+            if(word.length > 4){
               var count = 0;
               if(word in freq){
                 count = freq[word]
@@ -74,7 +85,7 @@ function runDocumentTextHighlighter() {
               freq[word] = count;
             }
           }
-          wordList.push({text: word, start: wordStart, end: i, phone: tagged});
+          wordList.push({text: word, start: wordStart, end: i-1, phone: tagged});
           word = "";
           wordStart = 0;
         }
@@ -85,8 +96,8 @@ function runDocumentTextHighlighter() {
       if(!word['phone']){
         if(freq[word.text] == 2){
             var highlightStyle = {};
-            highlightStyle[DocumentApp.Attribute.BACKGROUND_COLOR] = '#ffff00';
-            pText.setAttributes(wordStart, i-1, highlightStyle);
+            highlightStyle[DocumentApp.Attribute.BACKGROUND_COLOR] = '#ffe4c4';
+            pText.setAttributes(word.start, word.end, highlightStyle);
         }
       }
     }
