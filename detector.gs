@@ -12,6 +12,7 @@ var homophones = [
   'allowed', 'aloud',
   'capital', 'capital',
   'principle', 'principal',
+  'horse','hoarse',
 ];
 function onOpen(e) {
   DocumentApp.getUi().createAddonMenu()
